@@ -1,0 +1,1362 @@
+---
+swagger: "2.0"
+info:
+  version: "2020-02-02T05:50:19Z"
+  title: "YOUR_API_TITILE"
+schemes:
+- "https"
+paths:
+  /auth:
+    options:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_match"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        type: "mock"
+  /auth/change-password:
+    post:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "ChangePassword"
+        required: true
+        schema:
+          $ref: "#/definitions/ChangePassword"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        400:
+          description: "400 response"
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+      - CognitoAuthorizer: []
+      - api_key: []
+      x-amazon-apigateway-request-validator: "Validate body, query string parameters,\
+        \ and headers"
+      x-amazon-apigateway-integration:
+        credentials: "_IAMROLE_"
+        uri: "arn:aws:apigateway:_REGION_:cognito-idp:action/ChangePassword"
+        responses:
+          4\d{2}:
+            statusCode: "400"
+            responseTemplates:
+              application/json: "#set($inputRoot = $input.path('$'))\n{\n  \"message\"\
+                \ : \"$inputRoot.message\"\n}"
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        requestTemplates:
+          application/json: "#set($inputRoot = $input.path('$'))\n{\n    \"accessToken\"\
+            \ : \"$inputRoot.accessToken\",\n    \"previousPassword\" : \"$inputRoot.previousPassword\"\
+            ,\n    \"proposedPassword\" : \"$inputRoot.proposedPassword\"\n}"
+        type: "aws"
+    options:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_match"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        type: "mock"
+  /auth/forgot-password:
+    get:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ForgotPasswordResponse"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        400:
+          description: "400 response"
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+      - api_key: []
+      x-amazon-apigateway-request-validator: "Validate query string parameters and\
+        \ headers"
+      x-amazon-apigateway-integration:
+        credentials: "_IAMROLE_"
+        uri: "arn:aws:apigateway:_REGION_:cognito-idp:action/ForgotPassword"
+        responses:
+          4\d{2}:
+            statusCode: "400"
+            responseTemplates:
+              application/json: "#set($inputRoot = $input.path('$'))\n{\n  \"message\"\
+                \ : \"$inputRoot.message\"\n}"
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        requestTemplates:
+          application/json: "{\n   \"ClientId\": \"_ClientId_\",\n   \"Username\"\
+            : \"$util.urlDecode($input.params('username'))\"\n}"
+        type: "aws"
+    post:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "ForgotPasswordConfirmation"
+        required: true
+        schema:
+          $ref: "#/definitions/ForgotPasswordConfirmation"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        400:
+          description: "400 response"
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+      - api_key: []
+      x-amazon-apigateway-request-validator: "Validate body"
+      x-amazon-apigateway-integration:
+        credentials: "_IAMROLE_"
+        uri: "arn:aws:apigateway:_REGION_:cognito-idp:action/ConfirmForgotPassword"
+        responses:
+          4\d{2}:
+            statusCode: "400"
+            responseTemplates:
+              application/json: "#set($inputRoot = $input.path('$'))\n{\n  \"message\"\
+                \ : \"$inputRoot.message\"\n}"
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        requestTemplates:
+          application/json: "#set($inputRoot = $input.path('$'))\r\n{\r\n   \"ClientId\"\
+            : \"_ClientId_\",\r\n   \"ConfirmationCode\": \"$inputRoot.confirmationCode\"\
+            ,\r\n   \"Password\": \"$inputRoot.password\",\r\n   \"Username\": \"\
+            $inputRoot.username\"\r\n}"
+        type: "aws"
+    options:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS,POST'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_match"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        type: "mock"
+  /auth/login:
+    get:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "LoginRequest"
+        required: true
+        schema:
+          $ref: "#/definitions/LoginRequest"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Login"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        400:
+          description: "400 response"
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+      - api_key: []
+      x-amazon-apigateway-request-validator: "Validate body"
+      x-amazon-apigateway-integration:
+        credentials: "_IAMROLE_"
+        uri: "arn:aws:apigateway:_REGION_:cognito-identity:action/AdminInitiateAuth"
+        responses:
+          4\d{2}:
+            statusCode: "400"
+            responseTemplates:
+              application/json: "#set($inputRoot = $input.path('$'))\n{\n  \"message\"\
+                \ : \"$inputRoot.message\"\n}"
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "POST"
+        requestTemplates:
+          application/json: "#set($inputRoot = $input.path('$'))\r\n{\r\n   \"AuthFlow\"\
+            : \"ADMIN_NO_SRP_AUTH\",\r\n   \"AuthParameters\": { \r\n      \"USERNAME\"\
+            \ : \"$inputRoot.username\",\r\n      \"PASSWORD\" : \"$inputRoot.password\"\
+            \r\n   },\r\n   \"ClientId\": \"_ClientId_\",\r\n   \"UserPoolId\": \"_UserPoolId_\"\
+            \r\n}"
+        type: "aws"
+    options:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_match"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        type: "mock"
+  /auth/profile:
+    get:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ProfileGet"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        400:
+          description: "400 response"
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+      - CognitoAuthorizer: []
+      - api_key: []
+      x-amazon-apigateway-request-validator: "Validate query string parameters and\
+        \ headers"
+      x-amazon-apigateway-integration:
+        credentials: "_IAMROLE_"
+        uri: "arn:aws:apigateway:_REGION_:cognito-idp:action/AdminGetUser"
+        responses:
+          4\d{2}:
+            statusCode: "400"
+            responseTemplates:
+              application/json: "#set($inputRoot = $input.path('$'))\n{\n  \"message\"\
+                \ : \"$inputRoot.message\"\n}"
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        requestTemplates:
+          application/json: "{\r\n   \"Username\": \"$context.authorizer.claims['cognito:username']\"\
+            ,\r\n   \"UserPoolId\": \"_UserPoolId_\"\r\n}"
+        type: "aws"
+    options:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS,PATCH'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_match"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        type: "mock"
+    patch:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "ProfileUpdate"
+        required: true
+        schema:
+          $ref: "#/definitions/ProfileUpdate"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        400:
+          description: "400 response"
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+      - CognitoAuthorizer: []
+      - api_key: []
+      x-amazon-apigateway-request-validator: "Validate body, query string parameters,\
+        \ and headers"
+      x-amazon-apigateway-integration:
+        credentials: "_IAMROLE_"
+        uri: "arn:aws:apigateway:_REGION_:cognito-idp:action/AdminUpdateUserAttributes"
+        responses:
+          4\d{2}:
+            statusCode: "400"
+            responseTemplates:
+              application/json: "#set($inputRoot = $input.path('$'))\n{\n  \"message\"\
+                \ : \"$inputRoot.message\"\n}"
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "POST"
+        requestTemplates:
+          application/json: "#set($inputRoot = $input.path('$'))\r\n{\r\n   \"UserAttributes\"\
+            : [ \r\n      { \r\n         \"Name\": \"$inputRoot.name\",\r\n      \
+            \   \"Value\": \"$inputRoot.value\"\r\n      }\r\n   ],\r\n   \"Username\"\
+            : \"$context.authorizer.claims['cognito:username']\",\r\n   \"UserPoolId\"\
+            : \"_UserPoolId_\"\r\n}"
+        type: "aws"
+  /auth/refresh-token:
+    post:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "RefreshTokenRequest"
+        required: true
+        schema:
+          $ref: "#/definitions/RefreshTokenRequest"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Login"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        400:
+          description: "400 response"
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+      - CognitoAuthorizer: []
+      - api_key: []
+      x-amazon-apigateway-request-validator: "Validate body, query string parameters,\
+        \ and headers"
+      x-amazon-apigateway-integration:
+        credentials: "_IAMROLE_"
+        uri: "arn:aws:apigateway:_REGION_:cognito-idp:action/AdminInitiateAuth"
+        responses:
+          4\d{2}:
+            statusCode: "400"
+            responseTemplates:
+              application/json: "#set($inputRoot = $input.path('$'))\n{\n  \"message\"\
+                \ : \"$inputRoot.message\"\n}"
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        requestTemplates:
+          application/json: "#set($inputRoot = $input.path('$'))\r\n{\r\n   \"AuthFlow\"\
+            : \"REFRESH_TOKEN_AUTH\",\r\n   \"AuthParameters\": { \r\n      \"REFRESH_TOKEN\"\
+            \ : \"$inputRoot.refreshToken\" \r\n   },\r\n   \"ClientId\": \"_ClientId_\"\
+            ,\r\n   \"UserPoolId\": \"_UserPoolId_\"\r\n}"
+        type: "aws"
+    options:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_match"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        type: "mock"
+  /auth/register:
+    post:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Register"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        400:
+          description: "400 response"
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+      - api_key: []
+      x-amazon-apigateway-request-validator: "Validate body"
+      x-amazon-apigateway-integration:
+        credentials: "_IAMROLE_"
+        uri: "arn:aws:apigateway:_REGION_:cognito-idp:action/AdminCreateUser"
+        responses:
+          4\d{2}:
+            statusCode: "400"
+            responseTemplates:
+              application/json: "#set($inputRoot = $input.path('$'))\n{\n  \"message\"\
+                \ : \"$inputRoot.message\"\n}"
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        requestTemplates:
+          application/json: "#set($inputRoot = $input.path('$'))\r\n{\r\n   \"UserAttributes\"\
+            : [ \r\n      { \r\n        #set ($map = $inputRoot.attributes.getMap()\
+            \ )\r\n        #foreach ($mapEntry in $map.entrySet())\r\n           \
+            \ \"Name\": \"$mapEntry.key\",\r\n            \"Value\": \"$mapEntry.value\"\
+            \r\n        #end\r\n      }\r\n   ],\r\n   \"Username\": \"$inputRoot.username\"\
+            ,\r\n   \"UserPoolId\": \"_UserPoolId_\"\r\n}"
+        type: "aws"
+    options:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_match"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        type: "mock"
+  /auth/resend-activation:
+    get:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ForgotPasswordResponse"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        400:
+          description: "400 response"
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+      - api_key: []
+      x-amazon-apigateway-request-validator: "Validate query string parameters and\
+        \ headers"
+      x-amazon-apigateway-integration:
+        credentials: "_IAMROLE_"
+        uri: "arn:aws:apigateway:_REGION_:cognito-idp:action/ResendConfirmationCode"
+        responses:
+          4\d{2}:
+            statusCode: "400"
+            responseTemplates:
+              application/json: "#set($inputRoot = $input.path('$'))\n{\n  \"message\"\
+                \ : \"$inputRoot.message\"\n}"
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        requestTemplates:
+          application/json: "{\r\n   \"ClientId\": \"_ClientId_\",\r\n   \"Username\"\
+            : \"$input.params('username')\"\r\n}"
+        type: "aws"
+    options:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_match"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        type: "mock"
+  /auth/set-new-password:
+    post:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "SetNewPassword"
+        required: true
+        schema:
+          $ref: "#/definitions/SetNewPassword"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Login"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        400:
+          description: "400 response"
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+      - api_key: []
+      x-amazon-apigateway-request-validator: "Validate body"
+      x-amazon-apigateway-integration:
+        credentials: "_IAMROLE_"
+        uri: "arn:aws:apigateway:_REGION_:cognito-idp:action/AdminRespondToAuthChallenge"
+        responses:
+          4\d{2}:
+            statusCode: "400"
+            responseTemplates:
+              application/json: "#set($inputRoot = $input.path('$'))\n{\n  \"message\"\
+                \ : \"$inputRoot.message\"\n}"
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        requestTemplates:
+          application/json: "#set($inputRoot = $input.path('$'))\r\n{\r\n   \"ChallengeName\"\
+            : \"NEW_PASSWORD_REQUIRED\",\r\n   \"ChallengeResponses\": { \r\n    \
+            \  \"USERNAME\" : \"$inputRoot.username\",\r\n      \"NEW_PASSWORD\" :\
+            \ \"$inputRoot.newPassword\"\r\n   },\r\n   \"Session\": \"$inputRoot.session\"\
+            ,\r\n   \"ClientId\": \"_ClientId_\",\r\n   \"UserPoolId\": \"_UserPoolId_\"\
+            \r\n}"
+        type: "aws"
+    options:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_match"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        type: "mock"
+  /auth/user-group:
+    get:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        400:
+          description: "400 response"
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+      - CognitoAuthorizer: []
+      - api_key: []
+      x-amazon-apigateway-request-validator: "Validate query string parameters and\
+        \ headers"
+      x-amazon-apigateway-integration:
+        credentials: "_IAMROLE_"
+        uri: "arn:aws:apigateway:_REGION_:cognito-idp:action/AdminListGroupsForUser"
+        responses:
+          4\d{2}:
+            statusCode: "400"
+            responseTemplates:
+              application/json: "#set($inputRoot = $input.path('$'))\n{\n  \"message\"\
+                \ : \"$inputRoot.message\"\n}"
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        requestTemplates:
+          application/json: "{\r\n   \"Username\": \"$context.authorizer.claims['cognito:username']\"\
+            ,\r\n   \"UserPoolId\": \"_UserPoolId_\"\r\n}"
+        type: "aws"
+    post:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "UpdateUserGroup"
+        required: true
+        schema:
+          $ref: "#/definitions/UpdateUserGroup"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        400:
+          description: "400 response"
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+      - CognitoAuthorizer: []
+      - api_key: []
+      x-amazon-apigateway-request-validator: "Validate body, query string parameters,\
+        \ and headers"
+      x-amazon-apigateway-integration:
+        credentials: "_IAMROLE_"
+        uri: "arn:aws:apigateway:_REGION_:cognito-idp:action/AdminAddUserToGroup"
+        responses:
+          4\d{2}:
+            statusCode: "400"
+            responseTemplates:
+              application/json: "#set($inputRoot = $input.path('$'))\n{\n  \"message\"\
+                \ : \"$inputRoot.message\"\n}"
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        requestTemplates:
+          application/json: "#set($inputRoot = $input.path('$'))\r\n{\r\n   \"GroupName\"\
+            : \"$inputRoot.groupName\",\r\n   \"Username\": \"$context.authorizer.claims['cognito:username']\"\
+            ,\r\n   \"UserPoolId\": \"_UserPoolId_\"\r\n}"
+        type: "aws"
+    options:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS,POST'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_match"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        type: "mock"
+  /auth/verify-alias:
+    post:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "SendVerificationCode"
+        required: true
+        schema:
+          $ref: "#/definitions/SendVerificationCode"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ForgotPasswordResponse"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        400:
+          description: "400 response"
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+      - CognitoAuthorizer: []
+      - api_key: []
+      x-amazon-apigateway-request-validator: "Validate body, query string parameters,\
+        \ and headers"
+      x-amazon-apigateway-integration:
+        credentials: "_IAMROLE_"
+        uri: "arn:aws:apigateway:_REGION_:cognito-idp:action/GetUserAttributeVerificationCode"
+        responses:
+          4\d{2}:
+            statusCode: "400"
+            responseTemplates:
+              application/json: "#set($inputRoot = $input.path('$'))\n{\n  \"message\"\
+                \ : \"$inputRoot.message\"\n}"
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        requestTemplates:
+          application/json: "#set($inputRoot = $input.path('$'))\r\n{\r\n   \"AccessToken\"\
+            : \"$inputRoot.accessToken\",\r\n   \"AttributeName\": \"$inputRoot.attributeName\"\
+            \r\n}"
+        type: "aws"
+    options:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_match"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        type: "mock"
+  /auth/verify-alias/confirmation:
+    post:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "ConfirmVerificationCode"
+        required: true
+        schema:
+          $ref: "#/definitions/ConfirmVerificationCode"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        400:
+          description: "400 response"
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+      - CognitoAuthorizer: []
+      - api_key: []
+      x-amazon-apigateway-request-validator: "Validate body, query string parameters,\
+        \ and headers"
+      x-amazon-apigateway-integration:
+        credentials: "_IAMROLE_"
+        uri: "arn:aws:apigateway:_REGION_:cognito-idp:action/VerifyUserAttribute"
+        responses:
+          4\d{2}:
+            statusCode: "400"
+            responseTemplates:
+              application/json: "#set($inputRoot = $input.path('$'))\n{\n  \"message\"\
+                \ : \"$inputRoot.message\"\n}"
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
+        requestTemplates:
+          application/json: "#set($inputRoot = $input.path('$'))\r\n{\r\n   \"AccessToken\"\
+            : \"$inputRoot.accessToken\",\r\n   \"AttributeName\": \"$inputRoot.attributeName\"\
+            ,\r\n   \"Code\": \"$inputRoot.code\"\r\n}"
+        type: "aws"
+    options:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: "when_no_match"
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        type: "mock"
+securityDefinitions:
+  api_key:
+    type: "apiKey"
+    name: "x-api-key"
+    in: "header"
+  CognitoAuthorizer:
+    type: "apiKey"
+    name: "Authorization"
+    in: "header"
+    x-amazon-apigateway-authtype: "cognito_user_pools"
+    x-amazon-apigateway-authorizer:
+      providerARNs:
+      - "_USERPOOLARN_"
+      type: "cognito_user_pools"
+definitions:
+  ChangePassword:
+    type: "object"
+    required:
+    - "accessToken"
+    - "previousPassword"
+    - "proposedPassword"
+    properties:
+      accessToken:
+        type: "string"
+      previousPassword:
+        type: "string"
+      proposedPassword:
+        type: "string"
+    title: "ChangePassword"
+  RegisterAttributes:
+    type: "object"
+    required:
+    - "email"
+    properties:
+      email:
+        type: "string"
+    title: "Attributes"
+  ForgotPasswordConfirmation:
+    type: "object"
+    required:
+    - "ConfirmationCode"
+    - "Password"
+    - "Username"
+    properties:
+      ConfirmationCode:
+        type: "string"
+      Password:
+        type: "string"
+      Username:
+        type: "string"
+    title: "ForgotPasswordConfirmation"
+  Error:
+    type: "object"
+    properties:
+      message:
+        type: "string"
+    title: "Error Schema"
+  ConfirmVerificationCode:
+    type: "object"
+    required:
+    - "accessToken"
+    - "attributeName"
+    - "code"
+    properties:
+      accessToken:
+        type: "string"
+      attributeName:
+        type: "string"
+      code:
+        type: "string"
+    title: "ConfirmVerificationCode"
+  Login:
+    type: "object"
+    required:
+    - "AuthenticationResult"
+    - "ChallengeName"
+    - "ChallengeParameters"
+    - "Session"
+    properties:
+      AuthenticationResult:
+        $ref: "#/definitions/LoginAuthenticationResult"
+      ChallengeName:
+        type: "string"
+      ChallengeParameters:
+        $ref: "#/definitions/LoginChallengeParameters"
+      Session:
+        type: "string"
+    title: "Login"
+  LoginRequest:
+    type: "object"
+    required:
+    - "password"
+    - "username"
+    properties:
+      username:
+        type: "string"
+      password:
+        type: "string"
+    title: "Login"
+  ProfileGetMFAOptionsItem:
+    type: "object"
+    required:
+    - "AttributeName"
+    - "DeliveryMedium"
+    properties:
+      AttributeName:
+        type: "string"
+      DeliveryMedium:
+        type: "string"
+    title: "MFAOption"
+  SetNewPassword:
+    type: "object"
+    required:
+    - "newPassword"
+    - "session"
+    - "username"
+    properties:
+      newPassword:
+        type: "string"
+      username:
+        type: "string"
+      session:
+        type: "string"
+    title: "SetNewPassword"
+  LoginChallengeParameters:
+    type: "object"
+    required:
+    - "string"
+    properties:
+      string:
+        type: "string"
+    title: "ChallengeParameters"
+  ForgotPasswordResponseCodeDeliveryDetails:
+    type: "object"
+    required:
+    - "AttributeName"
+    - "DeliveryMedium"
+    - "Destination"
+    properties:
+      AttributeName:
+        type: "string"
+      DeliveryMedium:
+        type: "string"
+      Destination:
+        type: "string"
+    title: "CodeDeliveryDetails"
+  ForgotPasswordResponse:
+    type: "object"
+    required:
+    - "CodeDeliveryDetails"
+    properties:
+      CodeDeliveryDetails:
+        $ref: "#/definitions/ForgotPasswordResponseCodeDeliveryDetails"
+    title: "ForgotPasswordResponse"
+  RefreshTokenRequest:
+    type: "object"
+    required:
+    - "refreshToken"
+    properties:
+      refreshToken:
+        type: "string"
+    title: "RefreshTokenRequest"
+  Empty:
+    type: "object"
+    title: "Empty Schema"
+  ProfileGetUserAttributesItem:
+    type: "object"
+    required:
+    - "Name"
+    - "Value"
+    properties:
+      Name:
+        type: "string"
+      Value:
+        type: "string"
+    title: "UserAttribute"
+  ProfileGet:
+    type: "object"
+    required:
+    - "Enabled"
+    - "MFAOptions"
+    - "PreferredMfaSetting"
+    - "UserAttributes"
+    - "UserCreateDate"
+    - "UserLastModifiedDate"
+    - "UserMFASettingList"
+    - "UserStatus"
+    - "Username"
+    properties:
+      Enabled:
+        type: "boolean"
+      MFAOptions:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProfileGetMFAOptionsItem"
+      PreferredMfaSetting:
+        type: "string"
+      UserAttributes:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProfileGetUserAttributesItem"
+      UserCreateDate:
+        type: "integer"
+      UserLastModifiedDate:
+        type: "integer"
+      UserMFASettingList:
+        type: "array"
+        items:
+          type: "string"
+      Username:
+        type: "string"
+      UserStatus:
+        type: "string"
+    title: "Profile"
+  Register:
+    type: "object"
+    required:
+    - "attributes"
+    - "username"
+    properties:
+      username:
+        type: "string"
+      attributes:
+        $ref: "#/definitions/RegisterAttributes"
+    title: "RefreshToken"
+  SendVerificationCode:
+    type: "object"
+    required:
+    - "accessToken"
+    - "attributeName"
+    properties:
+      accessToken:
+        type: "string"
+      attributeName:
+        type: "string"
+    title: "SendVerificationCode"
+  ProfileUpdate:
+    type: "object"
+    required:
+    - "name"
+    - "value"
+    properties:
+      name:
+        type: "string"
+      value:
+        type: "string"
+    title: "ProfileUpdate"
+  LoginAuthenticationResultNewDeviceMetadata:
+    type: "object"
+    required:
+    - "DeviceGroupKey"
+    - "DeviceKey"
+    properties:
+      DeviceGroupKey:
+        type: "string"
+      DeviceKey:
+        type: "string"
+    title: "NewDeviceMetadata"
+  LoginAuthenticationResult:
+    type: "object"
+    required:
+    - "AccessToken"
+    - "ExpiresIn"
+    - "IdToken"
+    - "NewDeviceMetadata"
+    - "RefreshToken"
+    - "TokenType"
+    properties:
+      AccessToken:
+        type: "string"
+      ExpiresIn:
+        type: "string"
+      IdToken:
+        type: "string"
+      NewDeviceMetadata:
+        $ref: "#/definitions/LoginAuthenticationResultNewDeviceMetadata"
+      RefreshToken:
+        type: "string"
+      TokenType:
+        type: "string"
+    title: "AuthenticationResult"
+  UpdateUserGroup:
+    type: "object"
+    required:
+    - "groupName"
+    properties:
+      groupName:
+        type: "string"
+    title: "UpdateUserGroup"
+x-amazon-apigateway-gateway-responses:
+  DEFAULT_4XX:
+    responseParameters:
+      gatewayresponse.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
+      gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
+      gatewayresponse.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+  DEFAULT_5XX:
+    responseParameters:
+      gatewayresponse.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
+      gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
+      gatewayresponse.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+x-amazon-apigateway-request-validators:
+  Validate body:
+    validateRequestParameters: false
+    validateRequestBody: true
+  Validate body, query string parameters, and headers:
+    validateRequestParameters: true
+    validateRequestBody: true
+  Validate query string parameters and headers:
+    validateRequestParameters: true
+    validateRequestBody: false
