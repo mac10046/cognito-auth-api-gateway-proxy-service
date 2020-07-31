@@ -1,0 +1,2386 @@
+{
+	"info": {
+		"_postman_id": "01d71312-9e1e-411a-91e2-a3505ee53d50",
+		"name": "Cognito Auth API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "change-password",
+					"item": [
+						{
+							"name": "/auth/change-password",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": ""
+									},
+									{
+										"description": "(Required) ",
+										"key": "Authorization",
+										"value": "<string>"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accessToken\": \"<string>\",\n    \"previousPassword\": \"<string>\",\n    \"proposedPassword\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/change-password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"change-password"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "(Required) ",
+												"key": "Authorization",
+												"value": "<string>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"accessToken\": \"<string>\",\n    \"previousPassword\": \"<string>\",\n    \"proposedPassword\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/change-password",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"change-password"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "\"Ut aliqua\""
+								},
+								{
+									"name": "400 response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "(Required) ",
+												"key": "Authorization",
+												"value": "<string>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"accessToken\": \"<string>\",\n    \"previousPassword\": \"<string>\",\n    \"proposedPassword\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/change-password",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"change-password"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"message\": \"ea\"\n}"
+								}
+							]
+						},
+						{
+							"name": "/auth/change-password",
+							"request": {
+								"method": "OPTIONS",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/auth/change-password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"change-password"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 response",
+									"originalRequest": {
+										"method": "OPTIONS",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/auth/change-password",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"change-password"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Access-Control-Allow-Methods",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Access-Control-Allow-Headers",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "\"Ut aliqua\""
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "forgot-password",
+					"item": [
+						{
+							"name": "/auth/forgot-password",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": ""
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/auth/forgot-password?username=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"forgot-password"
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "400 response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/auth/forgot-password?username=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"forgot-password"
+											],
+											"query": [
+												{
+													"key": "username",
+													"value": "<string>"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"message\": \"ea\"\n}"
+								},
+								{
+									"name": "200 response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/auth/forgot-password?username=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"forgot-password"
+											],
+											"query": [
+												{
+													"key": "username",
+													"value": "<string>"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"CodeDeliveryDetails\": {\n  \"AttributeName\": \"ex cupidatat adipisicing\",\n  \"DeliveryMedium\": \"sint cillum fugiat\",\n  \"Destination\": \"amet laborum\"\n }\n}"
+								}
+							]
+						},
+						{
+							"name": "/auth/forgot-password",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"ConfirmationCode\": \"<string>\",\n    \"Password\": \"<string>\",\n    \"Username\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/forgot-password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"forgot-password"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "400 response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"ConfirmationCode\": \"<string>\",\n    \"Password\": \"<string>\",\n    \"Username\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/forgot-password",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"forgot-password"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"message\": \"ea\"\n}"
+								},
+								{
+									"name": "200 response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"ConfirmationCode\": \"<string>\",\n    \"Password\": \"<string>\",\n    \"Username\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/forgot-password",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"forgot-password"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "\"Ut aliqua\""
+								}
+							]
+						},
+						{
+							"name": "/auth/forgot-password",
+							"request": {
+								"method": "OPTIONS",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/auth/forgot-password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"forgot-password"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 response",
+									"originalRequest": {
+										"method": "OPTIONS",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/auth/forgot-password",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"forgot-password"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Access-Control-Allow-Methods",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Access-Control-Allow-Headers",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "\"Ut aliqua\""
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "login",
+					"item": [
+						{
+							"name": "/auth/login",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/auth/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"AuthenticationResult\": {\n  \"AccessToken\": \"fugiat culpa\",\n  \"ExpiresIn\": \"pariatur tempor est\",\n  \"IdToken\": \"in eu anim\",\n  \"NewDeviceMetadata\": {\n   \"DeviceGroupKey\": \"ut occaecat id ut\",\n   \"DeviceKey\": \"enim in quis\"\n  },\n  \"RefreshToken\": \"aute ex amet dolor\",\n  \"TokenType\": \"quis in nostrud eiusmod veniam\"\n },\n \"ChallengeName\": \"dolor\",\n \"ChallengeParameters\": {\n  \"string\": \"dolore veniam enim\"\n },\n \"Session\": \"dolor sit reprehenderit Lorem\"\n}"
+								},
+								{
+									"name": "400 response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/auth/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"login"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"message\": \"ea\"\n}"
+								}
+							]
+						},
+						{
+							"name": "/auth/login",
+							"request": {
+								"method": "OPTIONS",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 response",
+									"originalRequest": {
+										"method": "OPTIONS",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/auth/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Access-Control-Allow-Methods",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Access-Control-Allow-Headers",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "\"Ut aliqua\""
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "profile",
+					"item": [
+						{
+							"name": "/auth/profile",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": ""
+									},
+									{
+										"description": "(Required) ",
+										"key": "Authorization",
+										"value": "<string>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/auth/profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"profile"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "400 response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "(Required) ",
+												"key": "Authorization",
+												"value": "<string>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/auth/profile",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"profile"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"message\": \"ea\"\n}"
+								},
+								{
+									"name": "200 response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "(Required) ",
+												"key": "Authorization",
+												"value": "<string>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/auth/profile",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"profile"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"Enabled\": true,\n \"MFAOptions\": [\n  {\n   \"AttributeName\": \"culpa laborum nisi officia\",\n   \"DeliveryMedium\": \"sint veniam sed\"\n  },\n  {\n   \"AttributeName\": \"Duis amet laboris\",\n   \"DeliveryMedium\": \"enim officia et deserunt consequat\"\n  }\n ],\n \"PreferredMfaSetting\": \"est adipisicing cillum officia\",\n \"UserAttributes\": [\n  {\n   \"Name\": \"ea ad pariatur Ut eu\",\n   \"Value\": \"cu\"\n  },\n  {\n   \"Name\": \"fugiat nostrud dolore dese\",\n   \"Value\": \"sint est in\"\n  }\n ],\n \"UserCreateDate\": 79494289,\n \"UserLastModifiedDate\": -36979938,\n \"UserMFASettingList\": [\n  \"fugiat irure esse culpa in\",\n  \"ma\"\n ],\n \"UserStatus\": \"magna elit Ut eu\",\n \"Username\": \"non commodo nulla adipisicing\"\n}"
+								}
+							]
+						},
+						{
+							"name": "/auth/profile",
+							"request": {
+								"method": "OPTIONS",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/auth/profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"profile"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 response",
+									"originalRequest": {
+										"method": "OPTIONS",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/auth/profile",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"profile"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Access-Control-Allow-Methods",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Access-Control-Allow-Headers",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "\"Ut aliqua\""
+								}
+							]
+						},
+						{
+							"name": "/auth/profile",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": ""
+									},
+									{
+										"description": "(Required) ",
+										"key": "Authorization",
+										"value": "<string>"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"<string>\",\n    \"value\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"profile"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "400 response",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"description": "(Required) ",
+												"key": "Authorization",
+												"value": "<string>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"<string>\",\n    \"value\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/profile",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"profile"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"message\": \"ea\"\n}"
+								},
+								{
+									"name": "200 response",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"description": "(Required) ",
+												"key": "Authorization",
+												"value": "<string>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"<string>\",\n    \"value\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/profile",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"profile"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "\"Ut aliqua\""
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "refresh-token",
+					"item": [
+						{
+							"name": "/auth/refresh-token",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": ""
+									},
+									{
+										"description": "(Required) ",
+										"key": "Authorization",
+										"value": "<string>"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"refreshToken\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/refresh-token",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"refresh-token"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "(Required) ",
+												"key": "Authorization",
+												"value": "<string>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"refreshToken\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/refresh-token",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"refresh-token"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"AuthenticationResult\": {\n  \"AccessToken\": \"fugiat culpa\",\n  \"ExpiresIn\": \"pariatur tempor est\",\n  \"IdToken\": \"in eu anim\",\n  \"NewDeviceMetadata\": {\n   \"DeviceGroupKey\": \"ut occaecat id ut\",\n   \"DeviceKey\": \"enim in quis\"\n  },\n  \"RefreshToken\": \"aute ex amet dolor\",\n  \"TokenType\": \"quis in nostrud eiusmod veniam\"\n },\n \"ChallengeName\": \"dolor\",\n \"ChallengeParameters\": {\n  \"string\": \"dolore veniam enim\"\n },\n \"Session\": \"dolor sit reprehenderit Lorem\"\n}"
+								},
+								{
+									"name": "400 response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "(Required) ",
+												"key": "Authorization",
+												"value": "<string>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"refreshToken\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/refresh-token",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"refresh-token"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"message\": \"ea\"\n}"
+								}
+							]
+						},
+						{
+							"name": "/auth/refresh-token",
+							"request": {
+								"method": "OPTIONS",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/auth/refresh-token",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"refresh-token"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 response",
+									"originalRequest": {
+										"method": "OPTIONS",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/auth/refresh-token",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"refresh-token"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Access-Control-Allow-Methods",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Access-Control-Allow-Headers",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "\"Ut aliqua\""
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "register",
+					"item": [
+						{
+							"name": "/auth/register",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": ""
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/auth/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/auth/register",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"register"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"attributes\": {\n  \"email\": \"officia laboris\"\n },\n \"username\": \"nostrud co\"\n}"
+								},
+								{
+									"name": "400 response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/auth/register",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"register"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"message\": \"ea\"\n}"
+								}
+							]
+						},
+						{
+							"name": "/auth/register",
+							"request": {
+								"method": "OPTIONS",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/auth/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 response",
+									"originalRequest": {
+										"method": "OPTIONS",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/auth/register",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"register"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Access-Control-Allow-Methods",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Access-Control-Allow-Headers",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "\"Ut aliqua\""
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "resend-activation",
+					"item": [
+						{
+							"name": "/auth/resend-activation",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": ""
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/auth/resend-activation?username=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"resend-activation"
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "<string>",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/auth/resend-activation?username=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"resend-activation"
+											],
+											"query": [
+												{
+													"key": "username",
+													"value": "<string>"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"CodeDeliveryDetails\": {\n  \"AttributeName\": \"ex cupidatat adipisicing\",\n  \"DeliveryMedium\": \"sint cillum fugiat\",\n  \"Destination\": \"amet laborum\"\n }\n}"
+								},
+								{
+									"name": "400 response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/auth/resend-activation?username=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"resend-activation"
+											],
+											"query": [
+												{
+													"key": "username",
+													"value": "<string>"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"message\": \"ea\"\n}"
+								}
+							]
+						},
+						{
+							"name": "/auth/resend-activation",
+							"request": {
+								"method": "OPTIONS",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/auth/resend-activation",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"resend-activation"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 response",
+									"originalRequest": {
+										"method": "OPTIONS",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/auth/resend-activation",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"resend-activation"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Access-Control-Allow-Methods",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Access-Control-Allow-Headers",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "\"Ut aliqua\""
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "set-new-password",
+					"item": [
+						{
+							"name": "/auth/set-new-password",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"newPassword\": \"<string>\",\n    \"session\": \"<string>\",\n    \"username\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/set-new-password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"set-new-password"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"newPassword\": \"<string>\",\n    \"session\": \"<string>\",\n    \"username\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/set-new-password",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"set-new-password"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"AuthenticationResult\": {\n  \"AccessToken\": \"fugiat culpa\",\n  \"ExpiresIn\": \"pariatur tempor est\",\n  \"IdToken\": \"in eu anim\",\n  \"NewDeviceMetadata\": {\n   \"DeviceGroupKey\": \"ut occaecat id ut\",\n   \"DeviceKey\": \"enim in quis\"\n  },\n  \"RefreshToken\": \"aute ex amet dolor\",\n  \"TokenType\": \"quis in nostrud eiusmod veniam\"\n },\n \"ChallengeName\": \"dolor\",\n \"ChallengeParameters\": {\n  \"string\": \"dolore veniam enim\"\n },\n \"Session\": \"dolor sit reprehenderit Lorem\"\n}"
+								},
+								{
+									"name": "400 response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"newPassword\": \"<string>\",\n    \"session\": \"<string>\",\n    \"username\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/set-new-password",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"set-new-password"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"message\": \"ea\"\n}"
+								}
+							]
+						},
+						{
+							"name": "/auth/set-new-password",
+							"request": {
+								"method": "OPTIONS",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/auth/set-new-password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"set-new-password"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 response",
+									"originalRequest": {
+										"method": "OPTIONS",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/auth/set-new-password",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"set-new-password"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Access-Control-Allow-Methods",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Access-Control-Allow-Headers",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "\"Ut aliqua\""
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "user-group",
+					"item": [
+						{
+							"name": "/auth/user-group",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": ""
+									},
+									{
+										"description": "(Required) ",
+										"key": "Authorization",
+										"value": "<string>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/auth/user-group",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"user-group"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "400 response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "(Required) ",
+												"key": "Authorization",
+												"value": "<string>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/auth/user-group",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"user-group"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"message\": \"ea\"\n}"
+								},
+								{
+									"name": "200 response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "(Required) ",
+												"key": "Authorization",
+												"value": "<string>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/auth/user-group",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"user-group"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "\"Ut aliqua\""
+								}
+							]
+						},
+						{
+							"name": "/auth/user-group",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": ""
+									},
+									{
+										"description": "(Required) ",
+										"key": "Authorization",
+										"value": "<string>"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"groupName\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/user-group",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"user-group"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "(Required) ",
+												"key": "Authorization",
+												"value": "<string>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"groupName\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/user-group",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"user-group"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "\"Ut aliqua\""
+								},
+								{
+									"name": "400 response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "(Required) ",
+												"key": "Authorization",
+												"value": "<string>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"groupName\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/user-group",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"user-group"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"message\": \"ea\"\n}"
+								}
+							]
+						},
+						{
+							"name": "/auth/user-group",
+							"request": {
+								"method": "OPTIONS",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/auth/user-group",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"user-group"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 response",
+									"originalRequest": {
+										"method": "OPTIONS",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/auth/user-group",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"user-group"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Access-Control-Allow-Methods",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Access-Control-Allow-Headers",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "\"Ut aliqua\""
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "verify-alias",
+					"item": [
+						{
+							"name": "confirmation",
+							"item": [
+								{
+									"name": "/auth/verify-alias/confirmation",
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": ""
+											},
+											{
+												"description": "(Required) ",
+												"key": "Authorization",
+												"value": "<string>"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"accessToken\": \"<string>\",\n    \"attributeName\": \"<string>\",\n    \"code\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/verify-alias/confirmation",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"verify-alias",
+												"confirmation"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "200 response",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "(Required) ",
+														"key": "Authorization",
+														"value": "<string>"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"accessToken\": \"<string>\",\n    \"attributeName\": \"<string>\",\n    \"code\": \"<string>\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/auth/verify-alias/confirmation",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"auth",
+														"verify-alias",
+														"confirmation"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "irure qui do",
+													"description": ""
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "\"Ut aliqua\""
+										},
+										{
+											"name": "400 response",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"description": "(Required) ",
+														"key": "Authorization",
+														"value": "<string>"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"accessToken\": \"<string>\",\n    \"attributeName\": \"<string>\",\n    \"code\": \"<string>\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/auth/verify-alias/confirmation",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"auth",
+														"verify-alias",
+														"confirmation"
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"message\": \"ea\"\n}"
+										}
+									]
+								},
+								{
+									"name": "/auth/verify-alias/confirmation",
+									"request": {
+										"method": "OPTIONS",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/auth/verify-alias/confirmation",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"verify-alias",
+												"confirmation"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "200 response",
+											"originalRequest": {
+												"method": "OPTIONS",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/auth/verify-alias/confirmation",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"auth",
+														"verify-alias",
+														"confirmation"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "irure qui do",
+													"description": ""
+												},
+												{
+													"key": "Access-Control-Allow-Methods",
+													"value": "irure qui do",
+													"description": ""
+												},
+												{
+													"key": "Access-Control-Allow-Headers",
+													"value": "irure qui do",
+													"description": ""
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "\"Ut aliqua\""
+										}
+									]
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "/auth/verify-alias",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": ""
+									},
+									{
+										"description": "(Required) ",
+										"key": "Authorization",
+										"value": "<string>"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accessToken\": \"<string>\",\n    \"attributeName\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/verify-alias",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"verify-alias"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "(Required) ",
+												"key": "Authorization",
+												"value": "<string>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"accessToken\": \"<string>\",\n    \"attributeName\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/verify-alias",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"verify-alias"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"CodeDeliveryDetails\": {\n  \"AttributeName\": \"ex cupidatat adipisicing\",\n  \"DeliveryMedium\": \"sint cillum fugiat\",\n  \"Destination\": \"amet laborum\"\n }\n}"
+								},
+								{
+									"name": "400 response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "(Required) ",
+												"key": "Authorization",
+												"value": "<string>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"accessToken\": \"<string>\",\n    \"attributeName\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/verify-alias",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"verify-alias"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"message\": \"ea\"\n}"
+								}
+							]
+						},
+						{
+							"name": "/auth/verify-alias",
+							"request": {
+								"method": "OPTIONS",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/auth/verify-alias",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"verify-alias"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 response",
+									"originalRequest": {
+										"method": "OPTIONS",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/auth/verify-alias",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"verify-alias"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Access-Control-Allow-Methods",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Access-Control-Allow-Headers",
+											"value": "irure qui do",
+											"description": ""
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "\"Ut aliqua\""
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "/auth",
+					"request": {
+						"method": "OPTIONS",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/auth",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 response",
+							"originalRequest": {
+								"method": "OPTIONS",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/auth",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "irure qui do",
+									"description": ""
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "irure qui do",
+									"description": ""
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "irure qui do",
+									"description": ""
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "\"Ut aliqua\""
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"variable": [
+		{
+			"id": "baseUrl",
+			"key": "baseUrl",
+			"value": "https://08y86vkleb.execute-api.us-east-1.amazonaws.com/dev",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
