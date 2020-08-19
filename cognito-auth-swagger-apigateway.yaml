@@ -539,8 +539,8 @@ paths:
           application/json: "#set($inputRoot = $input.path('$'))\r\n{\r\n   \"UserAttributes\"\
             : [\r\n    #foreach ($mapKey in $inputRoot.keySet())\r\n        #if($mapKey\
             \ != 'username')\r\n        {\r\n            \"Name\": \"$mapKey\",\r\n\
-            \            \"Value\": \"$inputRoot.get($mapKey)\"\r\n        } \r\n\
-            \        #end #if($foreach.hasNext),#end\r\n    #end\r\n   ],\r\n   \"\
+            \            \"Value\": \"$inputRoot.get($mapKey)\"\r\n        }  #if($foreach.hasNext),#end \r\n\
+            \        #end\r\n    #end\r\n   ],\r\n   \"\
             Username\": \"$inputRoot.username\",\r\n   \"UserPoolId\": \"_USERPOOLID_\"\
             \r\n}"
         passthroughBehavior: "when_no_templates"
