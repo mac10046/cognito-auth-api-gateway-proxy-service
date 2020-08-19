@@ -6,37 +6,7 @@ info:
 schemes:
 - "https"
 paths:
-  /auth:
-    options:
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      responses:
-        200:
-          description: "200 response"
-          schema:
-            $ref: "#/definitions/Empty"
-          headers:
-            Access-Control-Allow-Origin:
-              type: "string"
-            Access-Control-Allow-Methods:
-              type: "string"
-            Access-Control-Allow-Headers:
-              type: "string"
-      x-amazon-apigateway-integration:
-        responses:
-          default:
-            statusCode: "200"
-            responseParameters:
-              method.response.header.Access-Control-Allow-Methods: "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'"
-              method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'"
-              method.response.header.Access-Control-Allow-Origin: "'*'"
-        passthroughBehavior: "when_no_match"
-        requestTemplates:
-          application/json: "{\"statusCode\": 200}"
-        type: "mock"
-  /auth/change-password:
+  /change-password:
     post:
       consumes:
       - "application/json"
@@ -82,12 +52,12 @@ paths:
             statusCode: "200"
             responseParameters:
               method.response.header.Access-Control-Allow-Origin: "'*'"
-        passthroughBehavior: "when_no_templates"
-        httpMethod: "POST"
         requestTemplates:
           application/json: "#set($inputRoot = $input.path('$'))\n{\n    \"accessToken\"\
             \ : \"$inputRoot.accessToken\",\n    \"previousPassword\" : \"$inputRoot.previousPassword\"\
             ,\n    \"proposedPassword\" : \"$inputRoot.proposedPassword\"\n}"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
         type: "aws"
     options:
       consumes:
@@ -114,11 +84,11 @@ paths:
               method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
               method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
               method.response.header.Access-Control-Allow-Origin: "'*'"
-        passthroughBehavior: "when_no_match"
         requestTemplates:
           application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
         type: "mock"
-  /auth/forgot-password:
+  /forgot-password:
     get:
       consumes:
       - "application/json"
@@ -158,11 +128,11 @@ paths:
             statusCode: "200"
             responseParameters:
               method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\n   \"ClientId\": \"_CLIENTID_\",\n\
+            \   \"Username\": \"$util.urlDecode($input.params('username'))\"\n}"
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
-        requestTemplates:
-          application/json: "{\n   \"ClientId\": \"_ClientId_\",\n   \"Username\"\
-            : \"$util.urlDecode($input.params('username'))\"\n}"
         type: "aws"
     post:
       consumes:
@@ -203,13 +173,13 @@ paths:
             statusCode: "200"
             responseParameters:
               method.response.header.Access-Control-Allow-Origin: "'*'"
-        passthroughBehavior: "when_no_templates"
-        httpMethod: "POST"
         requestTemplates:
           application/json: "#set($inputRoot = $input.path('$'))\r\n{\r\n   \"ClientId\"\
-            : \"_ClientId_\",\r\n   \"ConfirmationCode\": \"$inputRoot.confirmationCode\"\
+            : \"_CLIENTID_\",\r\n   \"ConfirmationCode\": \"$inputRoot.confirmationCode\"\
             ,\r\n   \"Password\": \"$inputRoot.password\",\r\n   \"Username\": \"\
             $inputRoot.username\"\r\n}"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
         type: "aws"
     options:
       consumes:
@@ -236,12 +206,12 @@ paths:
               method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS,POST'"
               method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
               method.response.header.Access-Control-Allow-Origin: "'*'"
-        passthroughBehavior: "when_no_match"
         requestTemplates:
           application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
         type: "mock"
-  /auth/login:
-    get:
+  /login:
+    post:
       consumes:
       - "application/json"
       produces:
@@ -280,14 +250,14 @@ paths:
             statusCode: "200"
             responseParameters:
               method.response.header.Access-Control-Allow-Origin: "'*'"
-        passthroughBehavior: "when_no_match"
-        httpMethod: "POST"
         requestTemplates:
           application/json: "#set($inputRoot = $input.path('$'))\r\n{\r\n   \"AuthFlow\"\
             : \"ADMIN_NO_SRP_AUTH\",\r\n   \"AuthParameters\": { \r\n      \"USERNAME\"\
             \ : \"$inputRoot.username\",\r\n      \"PASSWORD\" : \"$inputRoot.password\"\
-            \r\n   },\r\n   \"ClientId\": \"_ClientId_\",\r\n   \"UserPoolId\": \"_UserPoolId_\"\
-            \r\n}"
+            \r\n   },\r\n   \"ClientId\": \"_CLIENTID_\",\r\n   \"\
+            UserPoolId\": \"_USERPOOLID_\	"\r\n}"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "POST"
         type: "aws"
     options:
       consumes:
@@ -314,11 +284,11 @@ paths:
               method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS'"
               method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
               method.response.header.Access-Control-Allow-Origin: "'*'"
-        passthroughBehavior: "when_no_match"
         requestTemplates:
           application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
         type: "mock"
-  /auth/profile:
+  /profile:
     get:
       consumes:
       - "application/json"
@@ -359,11 +329,11 @@ paths:
             statusCode: "200"
             responseParameters:
               method.response.header.Access-Control-Allow-Origin: "'*'"
-        passthroughBehavior: "when_no_templates"
-        httpMethod: "POST"
         requestTemplates:
           application/json: "{\r\n   \"Username\": \"$context.authorizer.claims['cognito:username']\"\
-            ,\r\n   \"UserPoolId\": \"_UserPoolId_\"\r\n}"
+            ,\r\n   \"UserPoolId\": \"_USERPOOLID_\"\r\n}"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
         type: "aws"
     options:
       consumes:
@@ -390,9 +360,9 @@ paths:
               method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS,PATCH'"
               method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
               method.response.header.Access-Control-Allow-Origin: "'*'"
-        passthroughBehavior: "when_no_match"
         requestTemplates:
           application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
         type: "mock"
     patch:
       consumes:
@@ -439,16 +409,16 @@ paths:
             statusCode: "200"
             responseParameters:
               method.response.header.Access-Control-Allow-Origin: "'*'"
-        passthroughBehavior: "when_no_match"
-        httpMethod: "POST"
         requestTemplates:
           application/json: "#set($inputRoot = $input.path('$'))\r\n{\r\n   \"UserAttributes\"\
             : [ \r\n      { \r\n         \"Name\": \"$inputRoot.name\",\r\n      \
             \   \"Value\": \"$inputRoot.value\"\r\n      }\r\n   ],\r\n   \"Username\"\
             : \"$context.authorizer.claims['cognito:username']\",\r\n   \"UserPoolId\"\
-            : \"_UserPoolId_\"\r\n}"
+            : \"_USERPOOLID_\"\r\n}"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "POST"
         type: "aws"
-  /auth/refresh-token:
+  /refresh-token:
     post:
       consumes:
       - "application/json"
@@ -494,13 +464,13 @@ paths:
             statusCode: "200"
             responseParameters:
               method.response.header.Access-Control-Allow-Origin: "'*'"
-        passthroughBehavior: "when_no_templates"
-        httpMethod: "POST"
         requestTemplates:
           application/json: "#set($inputRoot = $input.path('$'))\r\n{\r\n   \"AuthFlow\"\
             : \"REFRESH_TOKEN_AUTH\",\r\n   \"AuthParameters\": { \r\n      \"REFRESH_TOKEN\"\
-            \ : \"$inputRoot.refreshToken\" \r\n   },\r\n   \"ClientId\": \"_ClientId_\"\
-            ,\r\n   \"UserPoolId\": \"_UserPoolId_\"\r\n}"
+            \ : \"$inputRoot.refreshToken\" \r\n   },\r\n   \"ClientId\": \"_CLIENTID_\"\
+            ,\r\n   \"UserPoolId\": \"_USERPOOLID_\"\r\n}"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
         type: "aws"
     options:
       consumes:
@@ -527,11 +497,11 @@ paths:
               method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
               method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
               method.response.header.Access-Control-Allow-Origin: "'*'"
-        passthroughBehavior: "when_no_match"
         requestTemplates:
           application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
         type: "mock"
-  /auth/register:
+  /register:
     post:
       consumes:
       - "application/json"
@@ -565,15 +535,16 @@ paths:
             statusCode: "200"
             responseParameters:
               method.response.header.Access-Control-Allow-Origin: "'*'"
-        passthroughBehavior: "when_no_templates"
-        httpMethod: "POST"
         requestTemplates:
           application/json: "#set($inputRoot = $input.path('$'))\r\n{\r\n   \"UserAttributes\"\
-            : [ \r\n      { \r\n        #set ($map = $inputRoot.attributes.getMap()\
-            \ )\r\n        #foreach ($mapEntry in $map.entrySet())\r\n           \
-            \ \"Name\": \"$mapEntry.key\",\r\n            \"Value\": \"$mapEntry.value\"\
-            \r\n        #end\r\n      }\r\n   ],\r\n   \"Username\": \"$inputRoot.username\"\
-            ,\r\n   \"UserPoolId\": \"_UserPoolId_\"\r\n}"
+            : [\r\n    #foreach ($mapKey in $inputRoot.keySet())\r\n        #if($mapKey\
+            \ != 'username')\r\n        {\r\n            \"Name\": \"$mapKey\",\r\n\
+            \            \"Value\": \"$inputRoot.get($mapKey)\"\r\n        } \r\n\
+            \        #end #if($foreach.hasNext),#end\r\n    #end\r\n   ],\r\n   \"\
+            Username\": \"$inputRoot.username\",\r\n   \"UserPoolId\": \"_USERPOOLID_\"\
+            \r\n}"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
         type: "aws"
     options:
       consumes:
@@ -600,11 +571,11 @@ paths:
               method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
               method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
               method.response.header.Access-Control-Allow-Origin: "'*'"
-        passthroughBehavior: "when_no_match"
         requestTemplates:
           application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
         type: "mock"
-  /auth/resend-activation:
+  /resend-activation:
     get:
       consumes:
       - "application/json"
@@ -644,11 +615,11 @@ paths:
             statusCode: "200"
             responseParameters:
               method.response.header.Access-Control-Allow-Origin: "'*'"
+        requestTemplates:
+          application/json: "{\r\n   \"ClientId\": \"_CLIENTID_\"\
+            ,\r\n   \"Username\": \"$input.params('username')\"\r\n}"
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
-        requestTemplates:
-          application/json: "{\r\n   \"ClientId\": \"_ClientId_\",\r\n   \"Username\"\
-            : \"$input.params('username')\"\r\n}"
         type: "aws"
     options:
       consumes:
@@ -675,11 +646,11 @@ paths:
               method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS'"
               method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
               method.response.header.Access-Control-Allow-Origin: "'*'"
-        passthroughBehavior: "when_no_match"
         requestTemplates:
           application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
         type: "mock"
-  /auth/set-new-password:
+  /set-new-password:
     post:
       consumes:
       - "application/json"
@@ -719,15 +690,15 @@ paths:
             statusCode: "200"
             responseParameters:
               method.response.header.Access-Control-Allow-Origin: "'*'"
-        passthroughBehavior: "when_no_templates"
-        httpMethod: "POST"
         requestTemplates:
           application/json: "#set($inputRoot = $input.path('$'))\r\n{\r\n   \"ChallengeName\"\
             : \"NEW_PASSWORD_REQUIRED\",\r\n   \"ChallengeResponses\": { \r\n    \
             \  \"USERNAME\" : \"$inputRoot.username\",\r\n      \"NEW_PASSWORD\" :\
             \ \"$inputRoot.newPassword\"\r\n   },\r\n   \"Session\": \"$inputRoot.session\"\
-            ,\r\n   \"ClientId\": \"_ClientId_\",\r\n   \"UserPoolId\": \"_UserPoolId_\"\
-            \r\n}"
+            ,\r\n   \"ClientId\": \"_CLIENTID_\",\r\n   \"UserPoolId\"\
+            : \"_USERPOOLID_\"\r\n}"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
         type: "aws"
     options:
       consumes:
@@ -754,11 +725,11 @@ paths:
               method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
               method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
               method.response.header.Access-Control-Allow-Origin: "'*'"
-        passthroughBehavior: "when_no_match"
         requestTemplates:
           application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
         type: "mock"
-  /auth/user-group:
+  /user-group:
     get:
       consumes:
       - "application/json"
@@ -799,11 +770,11 @@ paths:
             statusCode: "200"
             responseParameters:
               method.response.header.Access-Control-Allow-Origin: "'*'"
-        passthroughBehavior: "when_no_templates"
-        httpMethod: "POST"
         requestTemplates:
           application/json: "{\r\n   \"Username\": \"$context.authorizer.claims['cognito:username']\"\
-            ,\r\n   \"UserPoolId\": \"_UserPoolId_\"\r\n}"
+            ,\r\n   \"UserPoolId\": \"_USERPOOLID_\"\r\n}"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
         type: "aws"
     post:
       consumes:
@@ -850,12 +821,12 @@ paths:
             statusCode: "200"
             responseParameters:
               method.response.header.Access-Control-Allow-Origin: "'*'"
-        passthroughBehavior: "when_no_templates"
-        httpMethod: "POST"
         requestTemplates:
           application/json: "#set($inputRoot = $input.path('$'))\r\n{\r\n   \"GroupName\"\
             : \"$inputRoot.groupName\",\r\n   \"Username\": \"$context.authorizer.claims['cognito:username']\"\
-            ,\r\n   \"UserPoolId\": \"_UserPoolId_\"\r\n}"
+            ,\r\n   \"UserPoolId\": \"_USERPOOLID_\"\r\n}"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
         type: "aws"
     options:
       consumes:
@@ -882,11 +853,11 @@ paths:
               method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS,POST'"
               method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
               method.response.header.Access-Control-Allow-Origin: "'*'"
-        passthroughBehavior: "when_no_match"
         requestTemplates:
           application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
         type: "mock"
-  /auth/verify-alias:
+  /verify-alias:
     post:
       consumes:
       - "application/json"
@@ -932,12 +903,12 @@ paths:
             statusCode: "200"
             responseParameters:
               method.response.header.Access-Control-Allow-Origin: "'*'"
-        passthroughBehavior: "when_no_templates"
-        httpMethod: "POST"
         requestTemplates:
           application/json: "#set($inputRoot = $input.path('$'))\r\n{\r\n   \"AccessToken\"\
             : \"$inputRoot.accessToken\",\r\n   \"AttributeName\": \"$inputRoot.attributeName\"\
             \r\n}"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
         type: "aws"
     options:
       consumes:
@@ -964,11 +935,11 @@ paths:
               method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
               method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
               method.response.header.Access-Control-Allow-Origin: "'*'"
-        passthroughBehavior: "when_no_match"
         requestTemplates:
           application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
         type: "mock"
-  /auth/verify-alias/confirmation:
+  /verify-alias/confirmation:
     post:
       consumes:
       - "application/json"
@@ -1014,12 +985,12 @@ paths:
             statusCode: "200"
             responseParameters:
               method.response.header.Access-Control-Allow-Origin: "'*'"
-        passthroughBehavior: "when_no_templates"
-        httpMethod: "POST"
         requestTemplates:
           application/json: "#set($inputRoot = $input.path('$'))\r\n{\r\n   \"AccessToken\"\
             : \"$inputRoot.accessToken\",\r\n   \"AttributeName\": \"$inputRoot.attributeName\"\
             ,\r\n   \"Code\": \"$inputRoot.code\"\r\n}"
+        passthroughBehavior: "when_no_templates"
+        httpMethod: "POST"
         type: "aws"
     options:
       consumes:
@@ -1046,9 +1017,9 @@ paths:
               method.response.header.Access-Control-Allow-Methods: "'OPTIONS,POST'"
               method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
               method.response.header.Access-Control-Allow-Origin: "'*'"
-        passthroughBehavior: "when_no_match"
         requestTemplates:
           application/json: "{\"statusCode\": 200}"
+        passthroughBehavior: "when_no_match"
         type: "mock"
 securityDefinitions:
   api_key:
@@ -1182,6 +1153,14 @@ definitions:
       string:
         type: "string"
     title: "ChallengeParameters"
+  ForgotPasswordResponse:
+    type: "object"
+    required:
+    - "CodeDeliveryDetails"
+    properties:
+      CodeDeliveryDetails:
+        $ref: "#/definitions/ForgotPasswordResponseCodeDeliveryDetails"
+    title: "ForgotPasswordResponse"
   ForgotPasswordResponseCodeDeliveryDetails:
     type: "object"
     required:
@@ -1196,14 +1175,6 @@ definitions:
       Destination:
         type: "string"
     title: "CodeDeliveryDetails"
-  ForgotPasswordResponse:
-    type: "object"
-    required:
-    - "CodeDeliveryDetails"
-    properties:
-      CodeDeliveryDetails:
-        $ref: "#/definitions/ForgotPasswordResponseCodeDeliveryDetails"
-    title: "ForgotPasswordResponse"
   RefreshTokenRequest:
     type: "object"
     required:
@@ -1215,17 +1186,6 @@ definitions:
   Empty:
     type: "object"
     title: "Empty Schema"
-  ProfileGetUserAttributesItem:
-    type: "object"
-    required:
-    - "Name"
-    - "Value"
-    properties:
-      Name:
-        type: "string"
-      Value:
-        type: "string"
-    title: "UserAttribute"
   ProfileGet:
     type: "object"
     required:
@@ -1264,6 +1224,17 @@ definitions:
       UserStatus:
         type: "string"
     title: "Profile"
+  ProfileGetUserAttributesItem:
+    type: "object"
+    required:
+    - "Name"
+    - "Value"
+    properties:
+      Name:
+        type: "string"
+      Value:
+        type: "string"
+    title: "UserAttribute"
   Register:
     type: "object"
     required:
@@ -1354,9 +1325,9 @@ x-amazon-apigateway-request-validators:
   Validate body:
     validateRequestParameters: false
     validateRequestBody: true
-  Validate body, query string parameters, and headers:
-    validateRequestParameters: true
-    validateRequestBody: true
   Validate query string parameters and headers:
     validateRequestParameters: true
     validateRequestBody: false
+  Validate body, query string parameters, and headers:
+    validateRequestParameters: true
+    validateRequestBody: true
